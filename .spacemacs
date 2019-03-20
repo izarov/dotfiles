@@ -51,12 +51,16 @@ This function should only modify configuration layer settings."
      go
      helm
      html
+     javascript
+     kotlin
      latex
      (markdown :variables markdown-live-preview-engine 'vmd)
      neotree
      (python :variables python-test-runner 'pytest)
+     react
      semantic
      sml
+     swift
      yaml
      ;; org
      ;; (shell :variables
@@ -518,6 +522,22 @@ you should place your code here."
   (add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++11")))
   (add-hook 'c++-mode-hook (lambda () (setq flycheck-clang-language-standard "c++11")))
 
+  (add-to-list 'magic-mode-alist
+               '("\\(import.*from \'react\';\\|\/\/ @flow\nimport.*from \'react\';\\)" . react-mode))
+
+  (setq-default
+   ;; js2-mode
+   js2-basic-offset 2
+   js-indent-level 2
+   js2-strict-missing-semi-warning nil
+   js2-strict-trailing-comma-warning nil
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
+
   ;;(desktop-read)
   )
 
@@ -555,7 +575,7 @@ This function is called at the very end of Spacemacs initialization."
  '(exec-path-from-shell-variables (quote ("PATH" "MANPATH" "WORKON_HOME")))
  '(package-selected-packages
    (quote
-    (pipenv helm-xref counsel-projectile counsel swiper ivy centered-cursor-mode dash-functional company-auctex auctex vmd-mode powerline parent-mode projectile request gitignore-mode flx magit git-commit with-editor smartparens iedit anzu evil goto-chg ctable ess julia-mode json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diminish go-mode inflections edn multiple-cursors paredit peg eval-sexp-fu highlight cider seq spinner queue pkg-info clojure-mode epl bind-map bind-key packed anaconda-mode pythonic helm helm-core auto-complete popup yasnippet undo-tree sml-mode hydra f s dash company async avy cuda-mode winum unfill fuzzy stickyfunc-enhance srefactor disaster company-c-headers cmake-mode clang-format flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary yaml-mode csv-mode mmm-mode markdown-toc markdown-mode gh-md web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data go-guru yapfify ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline solarized-theme smeargle restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file ob-sml neotree mwim move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide ido-vertical-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-eldoc gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ess-smart-equals ess-R-data-view elisp-slime-nav dumb-jump dockerfile-mode docker define-word cython-mode company-statistics company-go company-anaconda column-enforce-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (swift-mode kotlin-mode flycheck-kotlin dash-functional company-auctex auctex vmd-mode powerline parent-mode projectile request gitignore-mode flx magit git-commit with-editor smartparens iedit anzu evil goto-chg ctable ess julia-mode json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diminish go-mode inflections edn multiple-cursors paredit peg eval-sexp-fu highlight cider seq spinner queue pkg-info clojure-mode epl bind-map bind-key packed anaconda-mode pythonic helm helm-core auto-complete popup yasnippet undo-tree sml-mode hydra f s dash company async avy cuda-mode winum unfill fuzzy stickyfunc-enhance srefactor disaster company-c-headers cmake-mode clang-format flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary yaml-mode csv-mode mmm-mode markdown-toc markdown-mode gh-md web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data go-guru yapfify ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline solarized-theme smeargle restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file ob-sml neotree mwim move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide ido-vertical-mode hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio go-eldoc gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ess-smart-equals ess-R-data-view elisp-slime-nav dumb-jump dockerfile-mode docker define-word cython-mode company-statistics company-go company-anaconda column-enforce-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(projectile-globally-ignored-file-suffixes (quote ("ipynb,*.ipynb")))
  '(python-shell-interpreter-args "-i --simple-prompt")
  '(tramp-copy-size-limit 1000240)
