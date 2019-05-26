@@ -55,6 +55,7 @@ This function should only modify configuration layer settings."
      kotlin
      latex
      (markdown :variables markdown-live-preview-engine 'vmd)
+     multiple-cursors
      neotree
      (python :variables python-test-runner 'pytest)
      react
@@ -68,6 +69,7 @@ This function should only modify configuration layer settings."
      ;;        shell-default-position 'bottom)
      spell-checking
      syntax-checking
+     treemacs
      ;; version-control
      )
 
@@ -444,8 +446,15 @@ It should only modify the values of Spacemacs settings."
    ;; otherwise emacs keeps asking about the TAGS file
    ;; dotspacemacs-large-file-size 100 ; mb
    ;; large-file-warning-threshold 100000000
-   tags-add-tables nil
-   ))
+   tags-add-tables nil))
+
+(defun dotspacemacs/user-env ()
+  "Environment variables setup.
+This function defines the environment variables for your Emacs session. By
+default it calls `spacemacs/load-spacemacs-env' which loads the environment
+variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
+See the header of this file for more information."
+  (spacemacs/load-spacemacs-env))
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -490,9 +499,9 @@ you should place your code here."
   (global-set-key (kbd "C-c g") 'helm-imenu)
   (global-set-key (kbd "C-\\") 'evil-toggle-fold)
 
-  (with-eval-after-load 'anaconda-mode
-    (define-key anaconda-mode-map (kbd "M-,") 'anaconda-mode-go-back)
-    (define-key anaconda-mode-map (kbd "M-*") 'anaconda-mode-find-assignments))
+  ;; (with-eval-after-load 'anaconda-mode
+  ;;   (define-key anaconda-mode-map (kbd "M-,") 'anaconda-mode-go-back)
+  ;;   (define-key anaconda-mode-map (kbd "M-*") 'anaconda-mode-find-assignments))
 
   (with-eval-after-load 'magit
     ;; (define-key magit-mode-map (kbd "M-1") 'select-window-1)
